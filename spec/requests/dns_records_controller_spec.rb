@@ -6,7 +6,7 @@ RSpec.describe DnsRecordsController, type: :request do
 		let(:params) do
 			{
 				dns_records: {
-					id: '1.1.1.1',
+					ip: '1.1.1.1',
 					hostnames_attributes: [
 						{
 							hostname: 'lorem.com'
@@ -19,8 +19,19 @@ RSpec.describe DnsRecordsController, type: :request do
 		subject { post dns_records_path, params: params }
 
 		context 'when new dns record' do
-			it 'save the record' do
+			it 'create the record' do
+				expect { subject }.to change { Dns.count }.by(1)
+			end
+
+			it 'respond in the correct format' do
 				subject
+				expect(response.body).to eq({ id: Dns.last.id }.to_json)
+			end
+
+			it 'create the record with correct data' do
+				subject
+				expect(Dns.last.ip).to eq '1.1.1.1'
+				expect(Dns.last.hostnames).to match_array(['lorem.com'])
 			end
 		end
 	end
