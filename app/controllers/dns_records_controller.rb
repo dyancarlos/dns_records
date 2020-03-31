@@ -13,7 +13,7 @@ class DnsRecordsController < ApplicationController
     dns_record = DnsRecords::Create.new(dns_records_params).call
 
     if dns_record
-      render json: { id: dns.id }
+      render json: { id: dns_record.id }
     else
       render status: :internal_server_error
     end
