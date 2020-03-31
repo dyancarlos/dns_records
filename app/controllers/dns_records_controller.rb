@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class DnsRecordsController < ApplicationController
+  def index
+    dns = DnsRecords::DnsQuery.new(params).filter
+  end
+
   def create
     dns = DnsRecords::Create.new(dns_records_params).call
 

@@ -2,6 +2,34 @@
 require "rails_helper"
 
 RSpec.describe DnsRecordsController, type: :request do
+  describe 'GET /dns_records' do
+    before do
+      Dns.create!(ip: '1.1.1.1', hostnames: ['lorem.com', 'ipsum.com', 'dolor.com', 'amet.com'])
+      Dns.create!(ip: '2.2.2.2', hostnames: ['ipsum.com'])
+      Dns.create!(ip: '3.3.3.3', hostnames: ['ipsum.com', 'dolor.com', 'amet.com'])
+      Dns.create!(ip: '4.4.4.4', hostnames: ['ipsum.com', 'dolor.com', 'sit.com', 'amet.com'])
+      Dns.create!(ip: '5.5.5.5', hostnames: ['dolor.com', 'sit.com'])
+    end
+
+    subject { get dns_records_path, params: params }
+
+    context 'with required params' do
+      let(:params) { { page: 1 } }
+
+      it do
+        subject
+      end
+    end
+
+    context 'with optional params' do
+      let(:params) { { page: 1, included: '', excluded: '' } }
+
+      it do
+        # ...
+      end
+    end
+  end
+
   describe 'POST /dns_records' do
     let(:params) do
       {
