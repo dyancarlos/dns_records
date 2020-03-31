@@ -1,24 +1,41 @@
-# README
+# Intricately API Challenge
+Simple API for creating and searching DNS records.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Folders Structure
+**Services** folder: Used for DNS creation logic
+**Queries** folder: Used for searching the DNS on database  and formatting the params.
+**Serializers** folder: User to format the final JSON to the user.
 
-Things you may want to cover:
+### Setup
+Install the dependencies:
+`bundle install`
 
-* Ruby version
+This project uses Postgresql, so you will have to set your credentials to the **databse.yml** and then create the database:
+`bundle exec rake db:create`
 
-* System dependencies
+After creates the database, you'll need to run the migrations:
+`bundle exec rake db:migrate`
 
-* Configuration
+### Populating the databse
+There are seeds available, you can run by:
+`bundle exec rake db:seed`
 
-* Database creation
+Or you can run cURL to test the endpoint, here is an example(don't forget to check the URL):
+```
+curl --location --request POST 'http://localhost:3000/dns_records' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "dns_records": {
+    "ip": "9.9.9.9",
+    "hostnames_attributes": [
+      {
+        "hostname": "google.com"
+      }
+    ]
+  }
+}'
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Specs
+To run the specs:
+`bundle exec rspec`
