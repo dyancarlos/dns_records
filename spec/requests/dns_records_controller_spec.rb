@@ -16,15 +16,15 @@ RSpec.describe DnsRecordsController, type: :request do
     context 'with required params' do
       let(:params) { { page: 1 } }
 
-      it do
-        subject
+      it 'respond in the correct format' do
+        # ...
       end
     end
 
     context 'with optional params' do
       let(:params) { { page: 1, included: '', excluded: '' } }
 
-      it do
+      it 'respond in the correct format' do
         # ...
       end
     end

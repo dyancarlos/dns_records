@@ -2,9 +2,11 @@
 
 class DnsRecordsController < ApplicationController
   def index
-    dns_records = DnsRecords::DnsQuery.new(params)
-
-    render json: DnsSerializer.new(dns_records).as_json
+    if params[:page]
+      render json: DnsSerializer.new(DnsRecords::DnsQuery.new(params)).as_json
+    else
+      render json: { error: 'Page parameter is required.' }
+    end
   end
 
   def create
