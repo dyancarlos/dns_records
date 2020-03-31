@@ -46,6 +46,37 @@ curl --location --request POST 'http://localhost:3000/dns_records' \
 }'
 ```
 
+### Endpoints
+#### Endpoint #1
+
+**GET** /dns_records
+
+**Params:**
+
+```
+page (required): A page number
+included (optional): A list of all the hostnames the DNS records should have 
+excluded (optional): A list of hostnames the DNS records should not have
+```
+
+#### Endpoint #2
+**POST** /dns_records
+
+**Body:**
+
+```
+{
+  "dns_records": {
+    "ip": "1.1.1.1",
+    "hostnames_attributes": [
+      {
+        "hostname": "lorem.com"
+      }
+    ]
+  }
+}
+```
+
 ### Specs
 To run the specs:
 ```
