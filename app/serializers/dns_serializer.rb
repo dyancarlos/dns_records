@@ -17,8 +17,8 @@ class DnsSerializer
   private
 
   def records
-    collection.each_with_object([]) do |dns, array|
-      array << { 
+    collection.map do |dns|
+      {
         id: dns.id, 
         ip_address: dns.ip
       }

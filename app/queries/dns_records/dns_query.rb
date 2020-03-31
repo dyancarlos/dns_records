@@ -14,8 +14,8 @@ module DnsRecords
     end
 
     def related_hostnames
-      params.included.each_with_object([]) do |hostname, array|
-        array << {
+      params.included.map do |hostname|
+        {
           hostname: hostname,
           count: related_hostnames_count(hostname)
         }
