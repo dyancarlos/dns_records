@@ -2,13 +2,15 @@
 
 class DnsRecordsController < ApplicationController
   def index
-    dns = DnsRecords::DnsQuery.new(params).filter
+    dns_records = DnsRecords::DnsQuery.new(params)
+
+    render json: DnsSerializer.new(dns_records).as_json
   end
 
   def create
-    dns = DnsRecords::Create.new(dns_records_params).call
+    dns_record = DnsRecords::Create.new(dns_records_params).call
 
-    if dns
+    if dns_record
       render json: { id: dns.id }
     else
       render status: :internal_server_error
