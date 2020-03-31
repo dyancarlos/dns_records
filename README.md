@@ -24,6 +24,11 @@ After creates the database, you'll need to run the migrations:
 bundle exec rake db:migrate
 ```
 
+### Run
+```
+bundle exec rails s
+```
+
 ### Populating the databse
 There are seeds available, you can run by:
 ```
