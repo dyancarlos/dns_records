@@ -7,7 +7,7 @@ module DnsRecords
     end
 
     def call
-		  Dns.create(ip: ip, hostnames: hostnames)
+      Dns.create(ip: ip, hostnames: hostnames)
     end
 
     private
